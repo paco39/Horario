@@ -1,21 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package horario;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.List;
 
-/**
- *
- * @author Paco
- */
 public class Horario {
+    private ArrayList<EE>experienciasEducativas=new ArrayList<>();
+    private String nombreAlumno;
+    private String bloque;
+    private String seccion;
+    public Horario(){
+        
+    }
+    public void setNombreAlumno(String nombreAlumno) {
+        this.nombreAlumno = nombreAlumno;
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public void setBloque(String bloque) {
+        this.bloque = bloque;
+    }
+
+    public void setSeccion(String seccion) {
+        this.seccion = seccion;
+    }
+
+    public String getNombreAlumno() {
+        return nombreAlumno;
+    }
+
+    public String getBloque() {
+        return bloque;
+    }
+
+    public String getSeccion() {
+        return seccion;
+    }
+
+    public ArrayList<EE> getExperienciasEducativas() {
+        return experienciasEducativas;
+    }
+    
+    public boolean agregarEE(EE ee){
+        return this.experienciasEducativas.add(ee);
+    }
+    
+    public boolean eliminarEE(String nombreEE){
+        List<EE> lista;
+        lista=buscaEE(nombreEE);
+        return lista.removeAll(lista);
+    }
+    
+    public List<EE> buscaEE(String nombreEE){
+        return this.experienciasEducativas
+                .stream()
+                .filter(EE->EE.getNombreEE().contains(nombreEE))
+                .collect(Collectors.toList());
+    }
+    public int numeroDeMaterias(){
+        return experienciasEducativas.size();
     }
     
 }
