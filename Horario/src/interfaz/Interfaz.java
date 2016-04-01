@@ -15,23 +15,27 @@ import java.util.ArrayList;
 public class Interfaz {
     static Scanner teclado=new Scanner(System.in);
     public static void main(String[] args) {
-        Horario miHorario=new Horario();        
-        int opcion=0;
-        String nombreAlumno, bloque, seccion;
+        Horario miHorario=new Horario();
+        
         boolean x=true;
-        String nombreMaestro, nombreEE;
-        int diasDeClase;
+        
+        String nombreMaestro, nombreEE, nombreAlumno, bloque, seccion;        
+        int opcion, diasDeClase;
         ArrayList<String>salones=new ArrayList<>();
         ArrayList<String>horaClases=new ArrayList<>();
         ArrayList<String>diaClases=new ArrayList<>();
+        
         System.out.println("Ingresa tu nombre");
         nombreAlumno=teclado.nextLine();
+        
         System.out.println("Ingresa el bloque y la sección");
         bloque=teclado.next();
         seccion=teclado.next();
+        
         miHorario.setNombreAlumno(nombreAlumno);
         miHorario.setBloque(bloque);
         miHorario.setSeccion(seccion);
+        
         while(x==true){
             System.out.println("1.- Agregar EE \n 2.- Eliminar EE \n 3.- Mostrar horario\n 4.- Salir");
             opcion=teclado.nextInt();
@@ -75,6 +79,13 @@ public class Interfaz {
                     }
                     break;
                 case 2:
+                    //TODO
+                    System.out.println("Ingresa el nombre de la EE a eliminar");
+                    nombreEE=null;
+                    nombreEE=teclado.nextLine();
+                    if(miHorario.eliminarEE(nombreEE)==true){
+                        System.out.println("EE eliminada");
+                    }
                     break;
                 case 3:
                     break;

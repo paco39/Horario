@@ -44,6 +44,7 @@ public class Horario {
     }
     
     public boolean eliminarEE(String nombreEE){
+        //TODO
         List<EE> lista;
         lista=buscaEE(nombreEE);
         return lista.removeAll(lista);
