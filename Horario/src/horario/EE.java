@@ -2,9 +2,9 @@ package horario;
 import java.util.ArrayList;
 
 public class EE {
-    private ArrayList<String>salones;
-    private ArrayList<String>horaClases;
-    private ArrayList<String>diaClases;
+    private ArrayList<String>salones=new ArrayList<>();
+    private ArrayList<String>horaClases=new ArrayList<>();
+    private ArrayList<String>diaClases=new ArrayList<>();
     private String nombreMaestro;
     private String nombreEE;
     public EE(){
@@ -35,8 +35,8 @@ public class EE {
         return salones;
     }
 
-    public ArrayList<String> getHoraClases() {
-        return horaClases;
+    public String getHoraClases(int i) {
+        return horaClases.get(i);
     }
 
     public String getMaestro() {
