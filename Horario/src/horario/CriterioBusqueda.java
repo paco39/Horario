@@ -9,6 +9,6 @@ package horario;
  *
  * @author Paco
  */
-public enum DiaEE {
-    Lunes, Martes, Miercoles, Jueves, Viernes
+public enum CriterioBusqueda {
+    porDia, porNombre
 }

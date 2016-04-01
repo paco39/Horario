@@ -11,7 +11,6 @@ import horario.EE;
 import java.util.Scanner;
 import horario.Horario;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Interfaz {
     static Scanner teclado=new Scanner(System.in);
@@ -110,48 +109,53 @@ public class Interfaz {
                     System.out.println("EE agregadas previamente");
                     break;
                 case 2:
-                    //TODO
-                    System.out.println("Ingresa el nombre de la EE a eliminar");
-                    teclado.next();
-                    nombreEE=teclado.nextLine();
-                    if(miHorario.eliminarEE(nombreEE)==true){
-                        System.out.println("EE eliminada");
-                    }else{
-                        System.out.println("Ha ocurrido un error, intentalo de nuevo");
+                   // System.out.println("Ingresa el nombre de la EE a eliminar");
+                   // teclado.next();
+                    nombreEE="Procesos para la ingenieria";
+                    for(EE ee:miHorario.eesNombreX(nombreEE)){
+                        if(miHorario.eliminarEE(ee)==true){
+                            System.out.println("La EE se ha eliminado correctamente");
+                        }
                     }
                     break;
                 case 3:   
                     int i=0;
                     System.out.println("Nombre del alumno: "+ nombreAlumno+"\nBloque: "+ bloque+" Seccion: "+ seccion);
+                    
                     System.out.println("------Lunes------");
-                    for(EE ee:miHorario.eesLunes("Lunes")){
+                    for(EE ee:miHorario.eesDiaX("Lunes")){
                         imprimirEE(ee, i);
                         i++;
                     }
+                    
                     i=0;
                     System.out.println("------Martes------");
-                    for(EE ee:miHorario.eesLunes("Martes")){
+                    for(EE ee:miHorario.eesDiaX("Martes")){
                         imprimirEE(ee, i);
                         i++;
                     }
+                    
                     i=0;
                     System.out.println("------Miercoles------");
-                    for(EE ee:miHorario.eesLunes("Miercoles")){
+                    for(EE ee:miHorario.eesDiaX("Miercoles")){
                         imprimirEE(ee, i);
                         i++;
                     }
+                    
                     i=0;
                     System.out.println("------Jueves------");
-                    for(EE ee:miHorario.eesLunes("Jueves")){
+                    for(EE ee:miHorario.eesDiaX("Jueves")){
                         imprimirEE(ee, i);
                         i++;
                     }
+                    
                     i=0;
                     System.out.println("------Viernes------");
-                    for(EE ee:miHorario.eesLunes("Viernes")){
+                    for(EE ee:miHorario.eesDiaX("Viernes")){
                         imprimirEE(ee, i);
                         i++;
                     }
+                    
                     break;
                 case 4:
                     x=false;
