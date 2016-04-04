@@ -2,6 +2,7 @@
 Autor: Francisco Javier Miranda Carreño
 Archivo: horario.java
 Fecha de creación: 30/03/2016
+Fecha de actualización: 01/04/2016
 Descripción: Programa que permite crear un horario
              de clases y tener un control de las ex-
              periencias educativas inscritas. 
@@ -12,21 +13,22 @@ import java.util.Scanner;
 import horario.Horario;
 import java.util.ArrayList;
 
-public class Interfaz {
-    static Scanner teclado=new Scanner(System.in);
+public class Main {
     public static void imprimirEE(EE ee, int i){
         System.out.println("--------");
-        System.out.println("Nombre: "+ ee.getNombreEE()+"\nMaestro: "+ ee.getMaestro()+"\nHorario: "+ ee.getHoraClases(i));
+        System.out.println("Nombre: "+ ee.getNombreEE()+"\nMaestro: "+ ee.getMaestro()+
+                           "\nHorario: "+ ee.getHoraClases(i)+"\nSalon: "+ee.getSalones(i));
         System.out.println("--------");
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
+        Scanner teclado=new Scanner(System.in);
+        
         Horario miHorario=new Horario();
         
         boolean x=true;
         
-        String nombreMaestro, nombreEE, nombreAlumno, bloque, seccion, diaClase, salonClase, horaClase;        
-        int opcion, diasDeClase;
-        
+        String nombreEE, nombreAlumno, bloque, seccion;        
+        int opcion;       
         
        ArrayList<String>salones=new ArrayList<>();
        ArrayList<String>horaClases=new ArrayList<>();
@@ -109,53 +111,39 @@ public class Interfaz {
                     System.out.println("EE agregadas previamente");
                     break;
                 case 2:
-                   // System.out.println("Ingresa el nombre de la EE a eliminar");
-                   // teclado.next();
                     nombreEE="Procesos para la ingenieria";
-                    for(EE ee:miHorario.eesNombreX(nombreEE)){
+                    for(EE ee:miHorario.buscarEEPorNombreX(nombreEE)){
                         if(miHorario.eliminarEE(ee)==true){
                             System.out.println("La EE se ha eliminado correctamente");
                         }
                     }
                     break;
                 case 3:   
-                    int i=0;
+                    int j=0;
+                    String dia="";
                     System.out.println("Nombre del alumno: "+ nombreAlumno+"\nBloque: "+ bloque+" Seccion: "+ seccion);
                     
-                    System.out.println("------Lunes------");
-                    for(EE ee:miHorario.eesDiaX("Lunes")){
-                        imprimirEE(ee, i);
-                        i++;
-                    }
-                    
-                    i=0;
-                    System.out.println("------Martes------");
-                    for(EE ee:miHorario.eesDiaX("Martes")){
-                        imprimirEE(ee, i);
-                        i++;
-                    }
-                    
-                    i=0;
-                    System.out.println("------Miercoles------");
-                    for(EE ee:miHorario.eesDiaX("Miercoles")){
-                        imprimirEE(ee, i);
-                        i++;
-                    }
-                    
-                    i=0;
-                    System.out.println("------Jueves------");
-                    for(EE ee:miHorario.eesDiaX("Jueves")){
-                        imprimirEE(ee, i);
-                        i++;
-                    }
-                    
-                    i=0;
-                    System.out.println("------Viernes------");
-                    for(EE ee:miHorario.eesDiaX("Viernes")){
-                        imprimirEE(ee, i);
-                        i++;
-                    }
-                    
+                    for(int i=0;i<5;i++){
+                        j=0;
+                        switch (i){
+                            case 0: dia="Lunes";
+                                break;
+                            case 1: dia="Martes";
+                                break;
+                            case 2: dia="Miercoles";
+                                break;
+                            case 3: dia="Jueves";
+                                break;
+                            case 4: dia="Viernes";
+                                break;
+                        }
+                        
+                        System.out.println("----------"+dia+"----------");
+                        for(EE ee:miHorario.buscarEEPorDiaX(dia)){
+                            imprimirEE(ee, j);
+                            j++;
+                        }
+                    }                    
                     break;
                 case 4:
                     x=false;

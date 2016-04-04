@@ -9,6 +9,6 @@ package horario;
  *
  * @author Paco
  */
-public enum CriterioBusqueda {
+public enum TipoBusqueda {
     porDia, porNombre
 }

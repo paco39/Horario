@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Horario {
-    private ArrayList<EE>experienciasEducativas=new ArrayList<>();
+    private final ArrayList<EE>experienciasEducativas;
     private String nombreAlumno;
     private String bloque;
     private String seccion;
     
     public Horario(){
-        
+        this.experienciasEducativas=new ArrayList<>();
     }
     
     public void setNombreAlumno(String nombreAlumno) {
@@ -46,37 +46,32 @@ public class Horario {
         return this.experienciasEducativas.add(ee);
     }
     
-    private Predicate<EE> filtraEE(String objetoBusqueda, CriterioBusqueda tipo){
+    private Predicate<EE> filtraEE(String criterioBusqueda, TipoBusqueda tipo){
     Predicate<EE> predicadoFiltrado=null;
     switch (tipo) {
-        case porDia:
-             predicadoFiltrado=ee->ee.getDiaClases().contains(objetoBusqueda);
-             break;
-        case porNombre:
-             predicadoFiltrado=ee->ee.getNombreEE().contains(objetoBusqueda);
-             break;
+        case porDia: predicadoFiltrado=ee->ee.getDiaClases().contains(criterioBusqueda);
+            break;
+        case porNombre: predicadoFiltrado=ee->ee.getNombreEE().contains(criterioBusqueda);
+            break;
         default:
-             break;
+            break;
      }
     return predicadoFiltrado;
  }
  
-    private List<EE> buscarEE(String objetoBuscar, CriterioBusqueda tipo){
-         return this.experienciasEducativas
+    private List<EE> buscarEE(String criterioBusqueda, TipoBusqueda tipo){
+        return this.experienciasEducativas
             .stream()
-            .filter(filtraEE(objetoBuscar, tipo))
+            .filter(filtraEE(criterioBusqueda, tipo))
             .collect(Collectors.toList());
-      }
+        } 
     
-    /*
-    Busca las EE correspondientes a un día especifico de la semana
-    */
-    public List<EE> eesDiaX(String dia){
-         return this.buscarEE(dia, CriterioBusqueda.porDia);
+    public List<EE> buscarEEPorDiaX(String dia){
+        return this.buscarEE(dia, TipoBusqueda.porDia);
     }
     
-    public List<EE> eesNombreX(String nombreEE){
-         return this.buscarEE(nombreEE, CriterioBusqueda.porNombre);
+    public List<EE> buscarEEPorNombreX(String nombreEE){
+        return this.buscarEE(nombreEE, TipoBusqueda.porNombre);
     }
     
     public boolean eliminarEE(EE ee){

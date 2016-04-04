@@ -31,8 +31,8 @@ public class EE {
         this.nombreEE = nombreEE;
     }
     
-    public ArrayList<String> getSalones() {
-        return salones;
+    public String getSalones(int i) {
+        return salones.get(i);
     }
 
     public String getHoraClases(int i) {
