@@ -1,23 +1,23 @@
-/*
-Autor: Francisco Javier Miranda Carreño
+/**
+Autor: @author Francisco Javier Miranda Carreño
 Archivo: horario.java
 Fecha de creación: 30/03/2016
-Fecha de actualización: 01/04/2016
+Fecha de actualización: 03/04/2016
 Descripción: Programa que permite crear un horario
              de clases y tener un control de las ex-
              periencias educativas inscritas. 
 */
 package interfaz;
-import horario.EE;
+import horario.ExperienciaEducativa;
 import java.util.Scanner;
 import horario.Horario;
 import java.util.ArrayList;
 
 public class Main {
-    public static void imprimirEE(EE ee, int i){
+    public static void imprimirEE(ExperienciaEducativa experienciaEducativa, int i){
         System.out.println("--------");
-        System.out.println("Nombre: "+ ee.getNombreEE()+"\nMaestro: "+ ee.getMaestro()+
-                           "\nHorario: "+ ee.getHoraClases(i)+"\nSalon: "+ee.getSalones(i));
+        System.out.println("Nombre: "+ experienciaEducativa.getNombreExperienciaEducativa()+"\nMaestro: "+ experienciaEducativa.getNombreMaestro()+
+                           "\nHorario: "+ experienciaEducativa.getHoraClases(i)+"\nSalon: "+experienciaEducativa.getSalones(i));
         System.out.println("--------");
     }
     public static void main(String[] args) {        
@@ -56,12 +56,12 @@ public class Main {
             opcion=teclado.nextInt();
             switch (opcion){
                 case 1:                  
-                    EE construccion=new EE();
-                    EE diseño=new EE();
-                    EE procesos=new EE();
+                    ExperienciaEducativa construccion=new ExperienciaEducativa();
+                    ExperienciaEducativa diseño=new ExperienciaEducativa();
+                    ExperienciaEducativa procesos=new ExperienciaEducativa();
                             
-                    construccion.setNombreEE("Principios de construccion");                    
-                    construccion.setMaestro("Juan Carlos");                                        
+                    construccion.setNombreExperienciaEducativa("Principios de construccion");                    
+                    construccion.setNombreMaestro("Juan Carlos");                                        
                     diaClases.add("Lunes");
                     diaClases.add("Martes"); 
                     diaClases.add("Miercoles"); 
@@ -74,10 +74,10 @@ public class Main {
                     construccion.setDiaClases(diaClases);
                     construccion.setHoraClases(horaClases);
                     construccion.setSalones(salones);
-                    miHorario.agregarEE(construccion);
+                    miHorario.agregarExperienciaEducativa(construccion);
                                         
-                    diseño.setNombreEE("Principios de diseño");                    
-                    diseño.setMaestro("Jorge Ocharan");                                        
+                    diseño.setNombreExperienciaEducativa("Principios de diseño");                    
+                    diseño.setNombreMaestro("Jorge Ocharan");                                        
                     diaClases2.add("Lunes");
                     diaClases2.add("Miercoles"); 
                     diaClases2.add("Viernes"); 
@@ -90,10 +90,10 @@ public class Main {
                     diseño.setDiaClases(diaClases2);
                     diseño.setHoraClases(horaClases2);
                     diseño.setSalones(salones2);
-                    miHorario.agregarEE(diseño);
+                    miHorario.agregarExperienciaEducativa(diseño);
                                       
-                    procesos.setNombreEE("Procesos para la ingenieria");                    
-                    procesos.setMaestro("Maria de los Angeles");                                        
+                    procesos.setNombreExperienciaEducativa("Procesos para la ingenieria");                    
+                    procesos.setNombreMaestro("Maria de los Angeles");                                        
                     diaClases3.add("Martes");
                     diaClases3.add("Miercoles"); 
                     diaClases3.add("Jueves"); 
@@ -106,25 +106,26 @@ public class Main {
                     procesos.setDiaClases(diaClases3);
                     procesos.setHoraClases(horaClases3);
                     procesos.setSalones(salones3);
-                    miHorario.agregarEE(procesos);
+                    miHorario.agregarExperienciaEducativa(procesos);
                     
                     System.out.println("EE agregadas previamente");
+                    
                     break;
                 case 2:
                     nombreEE="Procesos para la ingenieria";
-                    for(EE ee:miHorario.buscarEEPorNombreX(nombreEE)){
-                        if(miHorario.eliminarEE(ee)==true){
+                    for(ExperienciaEducativa ee:miHorario.buscarExperienciaEducativaPorNombre(nombreEE)){
+                        if(miHorario.eliminarExperienciaEducativa(ee)==true){
                             System.out.println("La EE se ha eliminado correctamente");
                         }
                     }
                     break;
                 case 3:   
-                    int j=0;
+                    int indicador=0;
                     String dia="";
                     System.out.println("Nombre del alumno: "+ nombreAlumno+"\nBloque: "+ bloque+" Seccion: "+ seccion);
                     
                     for(int i=0;i<5;i++){
-                        j=0;
+                        indicador=0;
                         switch (i){
                             case 0: dia="Lunes";
                                 break;
@@ -139,11 +140,11 @@ public class Main {
                         }
                         
                         System.out.println("----------"+dia+"----------");
-                        for(EE ee:miHorario.buscarEEPorDiaX(dia)){
-                            imprimirEE(ee, j);
-                            j++;
+                        for(ExperienciaEducativa experienciaEducativa:miHorario.buscarExperienciaEducativaPorDia(dia)){
+                            imprimirEE(experienciaEducativa, indicador);
+                            indicador++;
                         }
-                    }                    
+                    }                                         
                     break;
                 case 4:
                     x=false;

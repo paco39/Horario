@@ -1,13 +1,22 @@
+/**
+Autor: @author Francisco Javier Miranda Carreño
+Archivo: horario.java
+Fecha de creación: 30/03/2016
+Fecha de actualización: 31/03/2016
+Descripción: Programa que permite crear un horario
+             de clases y tener un control de las ex-
+             periencias educativas inscritas. 
+*/
 package horario;
 import java.util.ArrayList;
 
-public class EE {
+public class ExperienciaEducativa {
     private ArrayList<String>salones=new ArrayList<>();
     private ArrayList<String>horaClases=new ArrayList<>();
     private ArrayList<String>diaClases=new ArrayList<>();
     private String nombreMaestro;
-    private String nombreEE;
-    public EE(){
+    private String nombreExperienciaEducativa;
+    public ExperienciaEducativa(){
         
     }
 
@@ -23,12 +32,12 @@ public class EE {
         this.horaClases = horaClases;
     }
 
-    public void setMaestro(String maestro) {
+    public void setNombreMaestro(String maestro) {
         this.nombreMaestro = maestro;
     }
 
-    public void setNombreEE(String nombreEE) {
-        this.nombreEE = nombreEE;
+    public void setNombreExperienciaEducativa(String nombreEE) {
+        this.nombreExperienciaEducativa = nombreEE;
     }
     
     public String getSalones(int i) {
@@ -39,12 +48,12 @@ public class EE {
         return horaClases.get(i);
     }
 
-    public String getMaestro() {
+    public String getNombreMaestro() {
         return nombreMaestro;
     }
 
-    public String getNombreEE() {
-        return nombreEE;
+    public String getNombreExperienciaEducativa() {
+        return nombreExperienciaEducativa;
     }
 
     public ArrayList<String> getDiaClases() {

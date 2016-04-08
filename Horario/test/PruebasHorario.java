@@ -1,3 +1,12 @@
+/**
+Autor: @author Francisco Javier Miranda Carreño
+Archivo: horario.java
+Fecha de creación: 30/03/2016
+Fecha de actualización: 03/04/2016
+Descripción: Programa que permite crear un horario
+             de clases y tener un control de las ex-
+             periencias educativas inscritas. 
+*/
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -5,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import horario.Horario;
-import horario.EE;
+import horario.ExperienciaEducativa;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +36,11 @@ public class PruebasHorario {
        ArrayList<String>horaClases3=new ArrayList<>();
        ArrayList<String>diaClases3=new ArrayList<>();
        
-       EE diseño=new EE();
-       EE procesos=new EE();
+       ExperienciaEducativa diseño=new ExperienciaEducativa();
+       ExperienciaEducativa procesos=new ExperienciaEducativa();
        
-       diseño.setNombreEE("Principios de diseño");                    
-       diseño.setMaestro("Jorge Ocharan");                                        
+       diseño.setNombreExperienciaEducativa("Principios de diseño");                    
+       diseño.setNombreMaestro("Jorge Ocharan");                                        
        diaClases2.add("Lunes");
        diaClases2.add("Miercoles"); 
        diaClases2.add("Viernes"); 
@@ -44,10 +53,10 @@ public class PruebasHorario {
        diseño.setDiaClases(diaClases2);
        diseño.setHoraClases(horaClases2);
        diseño.setSalones(salones2);
-       horario.agregarEE(diseño);
+       horario.agregarExperienciaEducativa(diseño);
 
-       procesos.setNombreEE("Procesos para la ingenieria");                    
-       procesos.setMaestro("Maria de los Angeles");                                        
+       procesos.setNombreExperienciaEducativa("Procesos para la ingenieria");                    
+       procesos.setNombreMaestro("Maria de los Angeles");                                        
        diaClases3.add("Martes");
        diaClases3.add("Miercoles"); 
        diaClases3.add("Jueves"); 
@@ -60,12 +69,12 @@ public class PruebasHorario {
        procesos.setDiaClases(diaClases3);
        procesos.setHoraClases(horaClases3);
        procesos.setSalones(salones3);
-       horario.agregarEE(procesos);
+       horario.agregarExperienciaEducativa(procesos);
     }
     
     @Test
     public void testAgregarEE(){
-        EE ee=new EE();
+        ExperienciaEducativa experienciaEducativa=new ExperienciaEducativa();
         
         boolean valorEsperado=true;
         
@@ -73,8 +82,8 @@ public class PruebasHorario {
         ArrayList<String>horaClases=new ArrayList<>();
         ArrayList<String>diaClases=new ArrayList<>();
         
-        ee.setNombreEE("Principios de construccion");                    
-        ee.setMaestro("Juan Carlos");                                        
+        experienciaEducativa.setNombreExperienciaEducativa("Principios de construccion");                    
+        experienciaEducativa.setNombreMaestro("Juan Carlos");                                        
         diaClases.add("Lunes");
         diaClases.add("Martes"); 
         diaClases.add("Miercoles"); 
@@ -84,17 +93,17 @@ public class PruebasHorario {
         salones.add("108");                      
         salones.add("104");                      
         salones.add("CC2");                                  
-        ee.setDiaClases(diaClases);
-        ee.setHoraClases(horaClases);
-        ee.setSalones(salones);
+        experienciaEducativa.setDiaClases(diaClases);
+        experienciaEducativa.setHoraClases(horaClases);
+        experienciaEducativa.setSalones(salones);
         
-        assertEquals("Prueba agregar EE", valorEsperado, horario.agregarEE(ee));
+        assertEquals("Prueba agregar EE", valorEsperado, horario.agregarExperienciaEducativa(experienciaEducativa));
     }
     
     @Test
     public void testBuscarEEPorNombre(){
         String nombre="Procesos";                
-        List<EE> eeEncontradas = horario.buscarEEPorNombreX(nombre);
+        List<ExperienciaEducativa> eeEncontradas = horario.buscarExperienciaEducativaPorNombre(nombre);
         int numeroDeEE=1;
         assertEquals("Prueba busca EE por nombre", numeroDeEE, eeEncontradas.size());
     }
@@ -102,7 +111,7 @@ public class PruebasHorario {
     @Test
     public void testBuscarEEPorDia(){
         String dia="Lunes";                
-        List<EE> eeEncontradas = horario.buscarEEPorDiaX(dia);
+        List<ExperienciaEducativa> eeEncontradas = horario.buscarExperienciaEducativaPorDia(dia);
         int numeroDeEE=1;
         assertEquals("Prueba busca EE por dia", numeroDeEE, eeEncontradas.size());
     }
@@ -111,14 +120,14 @@ public class PruebasHorario {
     public void testEliminarEE(){
         boolean valorEsperado=true;
         
-        EE ee=new EE();
+        ExperienciaEducativa ee=new ExperienciaEducativa();
         
         ArrayList<String>salones=new ArrayList<>();
         ArrayList<String>horaClases=new ArrayList<>();
         ArrayList<String>diaClases=new ArrayList<>();
         
-        ee.setNombreEE("Principios de construccion");                    
-        ee.setMaestro("Juan Carlos");                                        
+        ee.setNombreExperienciaEducativa("Principios de construccion");                    
+        ee.setNombreMaestro("Juan Carlos");                                        
         diaClases.add("Lunes");
         diaClases.add("Martes"); 
         diaClases.add("Miercoles"); 
@@ -132,9 +141,9 @@ public class PruebasHorario {
         ee.setHoraClases(horaClases);
         ee.setSalones(salones);
         
-        horario.agregarEE(ee);
+        horario.agregarExperienciaEducativa(ee);
         
-        assertEquals("Prueba eliminar EE", valorEsperado,horario.eliminarEE(ee));
+        assertEquals("Prueba eliminar EE", valorEsperado,horario.eliminarExperienciaEducativa(ee));
                 
     }
     
